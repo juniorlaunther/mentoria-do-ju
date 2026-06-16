@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-ig-purple: #833ab4;
+  --color-ig-magenta: #c13584;
+  --color-ig-pink: #e1306c;
+  --color-ig-orange: #f56040;
+  --color-ig-yellow: #ffdc80;
+
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+  --animate-scale-pulse: scale-pulse 4s ease-in-out infinite;
+  --animate-cta-pulse: cta-pulse 2.5s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.6; }
+  }
+  @keyframes scale-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  @keyframes cta-pulse {
+    0%, 100% { transform: scale(1); filter: brightness(1); box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); }
+    50% { transform: scale(1.02); filter: brightness(1.05); box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
+  }
+}
+
+body {
+  @apply bg-black text-white overflow-x-hidden antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Smooth selection */
+::selection {
+  background: rgba(225, 48, 108, 0.3);
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-ig-pink via-ig-magenta to-ig-orange;
+}
