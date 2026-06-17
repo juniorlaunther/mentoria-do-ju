@@ -211,9 +211,9 @@ export default function App() {
         flowing look instead of blocky sections.
       */}
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-ig-purple/10 rounded-full blur-[120px] mix-blend-screen" />
-        <div className="absolute top-[40%] right-[-20%] w-[60%] h-[60%] bg-ig-orange/5 rounded-full blur-[150px] mix-blend-screen" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] bg-ig-pink/10 rounded-full blur-[100px] mix-blend-screen" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-radial-purple rounded-full mix-blend-screen" />
+        <div className="absolute top-[40%] right-[-20%] w-[60%] h-[60%] bg-radial-orange rounded-full mix-blend-screen" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] bg-radial-pink rounded-full mix-blend-screen" />
       </div>
 
       {/* HERO SECTION */}
@@ -268,7 +268,7 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="absolute inset-0 bg-gradient-to-tr from-ig-purple via-ig-pink to-ig-orange blur-[100px] opacity-20 rounded-full"
+              className="absolute inset-0 bg-radial-purple opacity-40 rounded-full"
             />
             <AbstractPhone />
           </div>
@@ -292,6 +292,7 @@ export default function App() {
                 src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop" 
                 alt="Criador pensando na estratégia"
                 className="w-full h-full object-cover mix-blend-luminosity opacity-70"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-ig-purple/40 to-transparent mix-blend-overlay" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -352,7 +353,7 @@ export default function App() {
       {/* GROWTH & CONSISTENCY SECTION (GIF AREA) */}
       <section className="py-16 md:py-28 px-4 md:px-8 relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-12 border-y border-white/5 bg-white/[0.01]">
         {/* Decorative lighting */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] md:w-full h-full max-w-4xl bg-ig-pink/5 blur-[100px] md:blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] md:w-full h-full max-w-4xl bg-radial-pink rounded-full pointer-events-none" />
         
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24 relative z-10 w-full">
           <div className="flex-1 w-full space-y-6 md:space-y-8 text-center lg:text-left">
@@ -407,6 +408,7 @@ export default function App() {
                  src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=800&auto=format&fit=crop" 
                  alt="Resultados e notificações" 
                  className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
+                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               
@@ -446,6 +448,7 @@ export default function App() {
                  src="https://images.unsplash.com/photo-1611162618758-2a29a995354b?q=80&w=800&auto=format&fit=crop" 
                  alt="Criação de Conteúdo"
                  className="w-full h-full object-cover mix-blend-luminosity opacity-80"
+                 loading="lazy"
                />
                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             </motion.div>
@@ -491,7 +494,7 @@ export default function App() {
       {/* BRANDS / PARTNERSHIPS SECTION */}
       <section className="py-16 md:py-32 px-4 md:px-8 border-y border-white/5 bg-gradient-to-b from-transparent to-white/[0.02] relative overflow-hidden">
         {/* Glow */}
-        <div className="absolute right-0 top-1/2 w-[150%] md:w-[500px] h-[500px] bg-ig-purple/10 blur-[100px] md:blur-[150px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+        <div className="absolute right-0 top-1/2 w-[150%] md:w-[500px] h-[500px] bg-radial-purple rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24 relative z-10">
           
@@ -552,6 +555,7 @@ export default function App() {
                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop" 
                  alt="Marcas e Parcerias"
                  className="w-full h-full object-cover mix-blend-luminosity opacity-80 hover:scale-105 transition-transform duration-700 animate-scale-pulse md:animate-none"
+                 loading="lazy"
                />
                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                <div className="absolute inset-0 bg-ig-purple/20 mix-blend-overlay animate-glow-pulse md:animate-none" />
@@ -571,7 +575,7 @@ export default function App() {
       {/* TESTIMONIALS SECTION */}
       <section className="py-16 md:py-32 px-4 md:px-8 relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden mix-blend-screen opacity-50">
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] md:w-[1000px] h-[300px] bg-ig-orange/5 blur-[100px] md:blur-[150px] rounded-full" />
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] md:w-[1000px] h-[300px] bg-radial-orange rounded-full" />
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10">
@@ -616,7 +620,7 @@ export default function App() {
       <section className="py-16 md:py-32 px-4 md:px-8 relative overflow-hidden bg-black">
         {/* Abstract organic shape behind pricing */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-[150%] md:w-[800px] h-[500px] bg-gradient-to-br from-ig-purple/10 to-ig-pink/10 blur-[100px] rounded-[100%] animate-pulse" style={{ animationDuration: '6s' }} />
+          <div className="w-[150%] md:w-[800px] h-[500px] bg-radial-purple rounded-[100%] animate-pulse" style={{ animationDuration: '6s' }} />
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10 space-y-10 md:space-y-12">
