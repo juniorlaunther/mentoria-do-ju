@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, 
   Instagram, 
-  Play, 
   Check, 
   ChevronDown, 
   MessageCircle, 
@@ -52,61 +51,7 @@ const SectionHeading = ({ children, className = "" }: { children: React.ReactNod
   </motion.h2>
 );
 
-const AbstractPhone = () => (
-  <div className="relative w-full max-w-[320px] mx-auto aspect-[9/19] rounded-[2.5rem] border-[6px] border-zinc-900 bg-zinc-950 shadow-2xl overflow-hidden ring-1 ring-white/10 z-10 group">
-    {/* Glowing background inside phone */}
-    <div className="absolute inset-0 bg-gradient-to-br from-ig-purple/30 via-transparent to-ig-orange/30 blur-2xl" />
-    
-    <div className="relative z-10 flex flex-col h-full">
-      {/* Visual Image */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=800&auto=format&fit=crop" 
-          alt="Instagram aesthetic" 
-          className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700 blend-luminosity mix-blend-luminosity animate-scale-pulse md:animate-none"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent" />
-      </div>
 
-      <div className="relative z-10 p-6 flex flex-col h-full">
-        {/* Phone Header (Profile) */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-ig-yellow via-ig-pink to-ig-purple p-[2px] animate-spin-slow" style={{ animationDuration: '8s' }}>
-            <div className="w-full h-full bg-zinc-900 rounded-full border-[3px] border-zinc-950 overflow-hidden flex items-center justify-center relative">
-              <Instagram size={20} className="text-ig-pink absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-            </div>
-          </div>
-          <div className="space-y-3 flex-1">
-            <div className="w-24 h-2.5 bg-white/40 rounded-full backdrop-blur-md" />
-            <div className="w-16 h-2 bg-white/20 rounded-full backdrop-blur-md" />
-          </div>
-        </div>
-        
-        {/* Content Area */}
-        <div className="flex-1 space-y-4 flex flex-col justify-end pb-8">
-          <div className="w-full aspect-[4/5] bg-gradient-to-b from-white/10 to-transparent rounded-2xl border border-white/5 flex items-center justify-center relative overflow-hidden group/video shadow-2xl backdrop-blur-sm">
-             <img 
-               src="https://images.unsplash.com/photo-1622323758558-8d151ee6de99?q=80&w=600&auto=format&fit=crop" 
-               alt="Video content" 
-               className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover/video:scale-105 transition-transform duration-700 animate-scale-pulse md:animate-none"
-             />
-             <div className="absolute inset-0 bg-ig-pink/20 mix-blend-overlay opacity-0 group-hover/video:opacity-100 transition-opacity duration-500 animate-glow-pulse md:animate-none" />
-             <div className="w-14 h-14 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center relative z-10 border border-white/10">
-               <Play className="text-white ml-1" size={24} strokeWidth={1.5} fill="currentColor" />
-             </div>
-          </div>
-          <div className="w-3/4 h-2 bg-white/30 rounded-full" />
-          <div className="w-1/2 h-2 bg-white/20 rounded-full" />
-        </div>
-
-        {/* Mock Action Bar */}
-        <div className="h-12 mt-auto rounded-full bg-gradient-to-r from-ig-magenta to-ig-orange flex items-center justify-center shadow-[0_0_30px_rgba(225,48,108,0.3)] border border-white/10">
-          <div className="w-1/3 h-1.5 bg-white/40 rounded-full" />
-        </div>
-      </div>
-    </div>
-  </div>
-);
 
 const FlowingDeliverable = ({ title, desc, icon: Icon, delay = 0, colorClass = "from-ig-pink to-ig-orange", iconColor = "text-ig-pink" }: { title: string, desc: string, icon: any, delay?: number, colorClass?: string, iconColor?: string }) => (
   <motion.div 
@@ -130,7 +75,10 @@ const FlowingDeliverable = ({ title, desc, icon: Icon, delay = 0, colorClass = "
   </motion.div>
 );
 
-const TestimonialItem = ({ text, name, handle }: { text: string, name: string, handle: string }) => (
+const TestimonialItem = ({ text, name, handle, avatar }: { text: string, name: string, handle: string, avatar: string }) => {
+  const instagramUrl = `https://instagram.com/${handle.replace('@', '')}`;
+  
+  return (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -147,18 +95,16 @@ const TestimonialItem = ({ text, name, handle }: { text: string, name: string, h
     </div>
     <p className="text-lg text-zinc-300 font-sans italic leading-relaxed flex-1">"{text}"</p>
     <div className="flex items-center gap-4 mt-auto pt-4 border-t border-white/10">
-      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-ig-yellow via-ig-pink to-ig-purple p-[2px] shrink-0">
-        <div className="w-full h-full bg-zinc-900 rounded-full flex items-center justify-center font-display font-medium text-white text-lg">
-          {name.charAt(0)}
-        </div>
-      </div>
+      <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-gradient-to-tr from-ig-yellow via-ig-pink to-ig-purple p-[2px] shrink-0 hover:scale-105 transition-transform block">
+        <img src={avatar} alt={name} loading="lazy" className="w-full h-full object-cover rounded-full bg-zinc-900" />
+      </a>
       <div>
         <p className="font-medium text-white font-display leading-tight">{name}</p>
-        <p className="text-sm text-zinc-500 font-sans">{handle}</p>
+        <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 font-sans hover:text-ig-pink transition-colors inline-block">{handle}</a>
       </div>
     </div>
   </motion.div>
-);
+)};
 
 const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -211,66 +157,86 @@ export default function App() {
         flowing look instead of blocky sections.
       */}
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-radial-purple rounded-full mix-blend-screen" />
-        <div className="absolute top-[40%] right-[-20%] w-[60%] h-[60%] bg-radial-orange rounded-full mix-blend-screen" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] bg-radial-pink rounded-full mix-blend-screen" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-radial-purple rounded-full" />
+        <div className="absolute top-[40%] right-[-20%] w-[60%] h-[60%] bg-radial-orange rounded-full" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] bg-radial-pink rounded-full" />
       </div>
 
       {/* HERO SECTION */}
-      <section className="relative pt-16 pb-16 md:pt-28 md:pb-28 px-4 md:px-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24 relative z-10">
-          
-          <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md"
-            >
-              <Sparkles size={16} className="text-ig-pink" />
-              <span className="text-sm font-medium tracking-wide text-zinc-300 uppercase">Mentoria do JU para Criadores</span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-display text-[2.75rem] leading-[1.05] sm:text-5xl md:text-7xl lg:text-[5.5rem] font-medium tracking-tighter"
-            >
-              Sua presença digital, <br className="hidden md:block" />
-              <span className="text-gradient">levada a sério.</span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-[1.1rem] md:text-2xl text-zinc-400 font-sans max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light"
-            >
-              Uma chamada estratégica de 1 hora para organizar seu perfil, evoluir sua estética e preparar seu Instagram para marcas e oportunidades reais.
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="pt-4 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
-            >
-              <WhatsAppButton className="bg-gradient-to-r from-ig-magenta to-ig-orange text-white w-full sm:w-auto text-[0.95rem] sm:text-[1.05rem] md:text-lg shadow-[0_0_40px_rgba(225,48,108,0.3)]">
-                Quero agendar minha mentoria
-                <ArrowRight size={18} className="md:w-5 md:h-5" />
-              </WhatsAppButton>
-            </motion.div>
-          </div>
+      <section className="relative pt-16 pb-16 md:pt-32 md:pb-32 px-4 md:px-8 overflow-hidden flex flex-col justify-center min-h-[70vh]">
+        
+        {/* HERO BACKGROUND */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* Mobile Background */}
+          <img 
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0ZSalUZdy1xh3xW5pIN7ttWVLJ8JLMMaSwNveoQdRF04iNfW92mTQkoNicpTNxAfq4NubsN-I5np1gPyQkkL0Ws7e4kGACWpvuu6xSCbBLgu86GJlDS8e9j9L7br8cgB3NUstijtz3-9P-hXx3g989M6bfJ8yjcUPRo0tKfx6b1Kktk55jGlUes1zsgM/s16000/mobile%20hero.png" 
+            alt="Hero Background Mobile" 
+            className="w-full h-full object-cover object-top opacity-60 lg:hidden"
+          />
+          {/* Desktop Background */}
+          <img 
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIRdQ4Dc2egnoPPPZC-b_TCgjvh4PbueEZ9dD1MyGdHE1lDWqnT3C3XQlCyaVm3kP9kQOnuirLqnJkjQ2y5vws-jYkLedWKczIg9C3x7c0vXc6T6lsmhvsRyZDnZpLrAn4ui_QMJJ6hXbD9z6mvXu69zU4Cr4JIPk502glhHcO_p0Q9rmpXwkxBA58AT8/s16000/hero%20desktop.png" 
+            alt="Hero Background Desktop" 
+            className="w-full h-full object-cover object-center opacity-80 hidden lg:block"
+          />
+          {/* Gradient to fade out at the bottom */}
+          <div className="absolute inset-x-0 bottom-0 h-1/2 lg:h-1/3 bg-gradient-to-t from-black via-black/80 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black/50 to-transparent lg:hidden" />
+          <div className="hidden lg:block absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-black via-black/80 to-transparent" />
+        </div>
 
-          <div className="flex-1 w-full relative">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="absolute inset-0 bg-radial-purple opacity-40 rounded-full"
-            />
-            <AbstractPhone />
+        <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center justify-start">
+          
+          <div className="lg:w-[65%] flex flex-col items-center lg:items-start text-center lg:text-left w-full container-h">
+            
+            <div className="flex flex-col items-center lg:items-start space-y-6 lg:space-y-8 w-full">
+              <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md"
+              >
+                <Sparkles size={16} className="text-ig-pink" />
+                <span className="text-sm font-medium tracking-wide text-zinc-300 uppercase">Mentoria do JU para Criadores</span>
+              </motion.div>
+              
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="font-display leading-[1.05] font-medium tracking-tighter w-full"
+              >
+                <span className="block whitespace-nowrap text-[1.75rem] min-[390px]:text-[1.95rem] min-[420px]:text-[2.15rem] sm:text-5xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem]">Sua presença digital,</span>
+                <span className="text-gradient block text-[2.75rem] sm:text-5xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem]">levada a sério.</span>
+              </motion.h1>
+            </div>
+
+            {/* Spacer for mobile background face */}
+            <div className="h-[280px] min-[390px]:h-[320px] sm:h-[400px] lg:hidden w-full relative z-0 pointer-events-none" aria-hidden="true" />
+
+            <div className="flex flex-col items-center lg:items-start space-y-6 lg:space-y-8 w-full mt-2 lg:mt-8">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-[1.1rem] md:text-2xl text-zinc-400 font-sans max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light"
+              >
+                Uma chamada estratégica de 1 hora para organizar seu perfil, evoluir sua estética e preparar seu Instagram para marcas e oportunidades reais.
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="pt-2 lg:pt-4 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start w-full lg:w-auto"
+              >
+                <WhatsAppButton className="bg-gradient-to-r from-ig-magenta to-ig-orange text-white w-full sm:w-auto text-[1.1rem] md:text-xl shadow-[0_0_40px_rgba(225,48,108,0.3)] !px-8 !py-4">
+                  Quero agendar minha mentoria
+                  <ArrowRight size={20} className="md:w-6 md:h-6" />
+                </WhatsAppButton>
+              </motion.div>
+            </div>
+
           </div>
 
         </div>
@@ -289,9 +255,9 @@ export default function App() {
               className="relative rounded-none md:rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-[4/3] w-full border-y md:border border-white/10 shadow-2xl"
             >
               <img 
-                src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop" 
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFghtdca1UT4PdoL2D1fRPVXRSu6nXZE2KX3Tc7UaLPxcsCq3lZHxb8TTm9EHFT-y1J5iVgLoVYjwu3_QO4UeIaQFP2Ud304zYqBjfTBxFk45U0Rfbt92xnYv8RZs2kCBPf_gYmL6ukYJPu6pBRtgO4azezhuxtTzCuSRFyQPdOkg_oXvfEamfa2kkrTE/w480-h640/baixo%20engajamento.png" 
                 alt="Criador pensando na estratégia"
-                className="w-full h-full object-cover mix-blend-luminosity opacity-70"
+                className="w-full h-full object-cover opacity-90"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-ig-purple/40 to-transparent mix-blend-overlay" />
@@ -405,7 +371,7 @@ export default function App() {
             >
               {/* Replace this div with the actual GIF later */}
               <img 
-                 src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=800&auto=format&fit=crop" 
+                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfzwSwd-PP0ovFeICEbIdU6dCdObbWyOvHH6f63XmXh-0BTl8OfNxW95M4x7VdNRjhD2qIWpY86mkh9I-mQf36d7V_7jAM96wPMGt1su_zreCtQ1LGevLBm7Xl8isL_3Tt7RuoGqxCx_PaRD3_kA89ylEwyd9WrYkyH5E-HG2MetWHVVhZbsfyZqis39M/s16000/mentoria.gif" 
                  alt="Resultados e notificações" 
                  className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
                  loading="lazy"
@@ -552,9 +518,9 @@ export default function App() {
                className="relative rounded-none md:rounded-[2rem] overflow-hidden aspect-[4/5] sm:aspect-square md:aspect-[4/3] w-full border-y md:border border-white/10 shadow-[0_0_60px_rgba(131,58,180,0.2)]"
             >
                <img 
-                 src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop" 
+                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMNonDwBcDfBe-pwIrGul1Z5vcGwAhZeGFF4rwE9V4ms9cSDpaX28nuhz1mtKmDfdhRdjLRImVw1TcVGxFTbWlSHxRnyd1WfHRNGH-QcF7zqYhEBbJfOY_XvJjLeNnay2t1olH0Hjam9Zn63R3wPBJuujqH3BYXkqjyZ6PRqCkW_Ba94v0Uk_RRflGC4E/w640-h426/Produtos%20parceria%20WAP.png" 
                  alt="Marcas e Parcerias"
-                 className="w-full h-full object-cover mix-blend-luminosity opacity-80 hover:scale-105 transition-transform duration-700 animate-scale-pulse md:animate-none"
+                 className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700 animate-scale-pulse md:animate-none"
                  loading="lazy"
                />
                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
@@ -572,6 +538,61 @@ export default function App() {
         </div>
       </section>
 
+      {/* WHO IS JU SECTION */}
+      <section className="py-16 md:py-32 px-4 md:px-8 border-y border-white/5 bg-white/[0.01] relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none mix-blend-screen opacity-50">
+           <div className="absolute top-[30%] left-[-10%] w-[50%] h-[50%] bg-radial-pink rounded-full" />
+        </div>
+        
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20 relative z-10">
+          <div className="flex-1 w-full flex justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full max-w-[400px] aspect-[3/4] rounded-2xl md:rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(225,48,108,0.2)]"
+            >
+              <img 
+                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUYCZfvHREvSV12BRv4PaFlQNcES94DSqxSc_g_uj_QrKW4miOfDPUS9EhGXpHWRacdfilwyA-0JGhGQlcOas3AH_cf8mITR2VGPXDoP1AZSVTXSmpKSgJ023QC-YSqxo2ss2BjJNKRCzfqEgbUozVycnpmZitIIY5wIVvSpS_jniMYbCULcIDSnFVpFE/w512-h640/junior%20launther.jpeg" 
+                 alt="Junior Launther" 
+                 className="w-full h-full object-cover"
+                 loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <p className="font-display text-2xl text-white font-medium">Junior Launther</p>
+                <a href="https://instagram.com/ACasaDoJu" target="_blank" rel="noreferrer" className="text-zinc-400 text-sm hover:text-ig-pink transition-colors">@ACasaDoJu</a>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="flex-1 w-full text-center md:text-left">
+            <SectionHeading className="!leading-tight mb-8">
+              Quem é o <span className="text-gradient hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">JU?</span>
+            </SectionHeading>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-[1.1rem] md:text-lg text-zinc-300 leading-relaxed font-light space-y-6"
+            >
+              <p>
+                <strong className="text-white font-medium">Junior Launther</strong> é criador de conteúdo, artista e comunicador à frente do <a href="https://instagram.com/ACasaDoJu" target="_blank" rel="noreferrer" className="text-white font-medium hover:text-ig-pink hover:underline transition-colors">@ACasaDoJu</a>, perfil onde transforma ideias, estética, bastidores e projetos criativos em conteúdo para uma audiência conectada com casa, arte, DIY e presença digital.
+              </p>
+              <p>
+                Com experiência prática na criação de vídeos, storytelling, direção visual e construção de comunidade no Instagram, Junior desenvolveu um olhar estratégico para entender o que torna um perfil mais profissional, atrativo e preparado para gerar oportunidades.
+              </p>
+              <p className="text-zinc-100 font-medium">
+                Na Mentoria do JU para Criadores, ele une criatividade, vivência real de internet e análise sincera para ajudar pequenos influenciadores a enxergarem a criação de conteúdo como trabalho.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* TESTIMONIALS SECTION */}
       <section className="py-16 md:py-32 px-4 md:px-8 relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden mix-blend-screen opacity-50">
@@ -581,24 +602,27 @@ export default function App() {
         <div className="max-w-6xl mx-auto relative z-10">
           <SectionHeading className="text-center mb-16 md:mb-20 !text-4xl md:!text-5xl">
             Quem vivenciou a <br className="md:hidden" />
-            <span className="italic font-light text-zinc-500">mudança</span>
+            <span className="italic font-light text-gradient hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">mudança</span>
           </SectionHeading>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
             <TestimonialItem 
               name="Caroline"
               handle="@carolineamad"
-              text="A mentoria virou uma chave! Entendi finalmente o que precisava ajustar na minha bio e como me posicionar melhor para as marcas de forma autêntica."
+              text="A mentoria virou uma chave total! Mesmo com poucos seguidores, eu consegui melhorar meu conteúdo e tenho fechado muitas publis na minha cidade. Até FIXAS."
+              avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizTCT1fIId6EkLFQevvAxc8tU6SfKpLRu4iq827jXL34ITRgVB2xJ2l2Q1vxNXEKTIfz9ae7MahVIXWHJzr7IjI6bJ_6VeYCRIw-SZwWrLkZ00aBmDSGuDi_24pv_wIDwArbc76GORaISujHvgy4LH_HZJ-uD5J9HqZEeTfj-T5y7n_UGdBm-1-b5QVd4/s1600/caroline.jpg"
             />
             <TestimonialItem 
               name="Na Cozinha Simples"
               handle="@nacozinhasimples"
-              text="Eu criava conteúdo mas me sentia estagnada. O Ju me ajudou a organizar o feed e enxergar a criação como negócio. Hoje a percepção do meu trabalho mudou."
+              text="O Junior foi um grande parceiro desde quando eu tinha 40mil seguidores. Faço um acompanhamento trimestral para sempre estar atualizado e melhorando!"
+              avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrSe_JGHmbfxitFJTK34Lc6fcvfQk5fWs1dyrDrNe_ZWBULtmc9LJiNywCQU2UzGI6BOODLuq3pQkNCmj_6pgvi46VVjozUw9ZOXQg6cJPJjxsUeZKzt7N4_Ek34w1nC4oq4paOdU3XWoT0-O5Gnli_En7Fg2TJGbilM8-tvacpQx5zw5SE2qTcz8c894/s1600/nacozinhasimples.jpg"
             />
             <TestimonialItem 
               name="Hebertt"
               handle="@hebertt"
-              text="Direto ao ponto, sem enrolação. Tive um direcionamento claro de quais formatos focar e como construir autoridade através do meu conteúdo diário."
+              text="Sou cantor, o Ju me deu uma ideia de criar um vídeo nos bares da minha cidade que viralizou!!! Os insights dele são sempre incríveis."
+              avatar="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSXJPYb5V0bv4hqIJyEu9b_dV1tSM-TlDxUe6-6lKbhy-OHNU4Y9qkQiC-UiYuDR0pXGwkChdVLq_JwuEq2Q68uPEtZZhWMW9OavdGjOdrRXq-BL08m3epfiaB9D0OUwTpYdRoGZ71oxZOTx0w58VW4YytxO4HfoV7fe2O9HMEQOucC2qa23byXyly_ZY/s1600/hebertt.jpg"
             />
           </div>
           
